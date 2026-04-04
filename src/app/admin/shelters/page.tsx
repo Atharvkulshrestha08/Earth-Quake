@@ -19,10 +19,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
-export const metadata = {
-  title: "Shelter Management",
-};
-
 const shelters = [
   {
     id: "1",
