@@ -1,9 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sanitizeObject } from "@/lib/security/sanitization";
+import { rateLimit } from "@/lib/security/ratelimit";
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 5 requests per 15 minutes for SOS
+    if (!rateLimit(request, { limit: 5, windowMs: 15 * 60 * 1000 })) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait before sending another SOS." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
-    const { lat, lng, phone, name, type } = body;
+    const sanitizedBody = sanitizeObject(body);
+    const { lat, lng, phone, name, type } = sanitizedBody;
 
     if (!lat || !lng || !phone) {
       return NextResponse.json(

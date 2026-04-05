@@ -85,7 +85,7 @@ export default function DashboardPage() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <h1 className="text-3xl font-bold text-white tracking-tight">Intelligence Dashboard</h1>
-              <Badge variant="secondary" className="bg-primary-500/10 text-primary-400 border-primary-500/20 px-3">Live Monitor</Badge>
+              <Badge variant="primary" className="bg-primary-500/10 text-primary-400 border-primary-500/20 px-3">Live Monitor</Badge>
             </div>
             <p className="text-neutral-400 flex items-center gap-2">
               <MapPin className="w-4 h-4 text-alert-high" />

@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { rateLimit } from "@/lib/security/ratelimit";
 
 export default auth((req) => {
   const isLoggedin = !!req.auth;

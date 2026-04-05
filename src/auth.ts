@@ -22,11 +22,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // if (!isValid) return null;
 
         // FOR NOW: Maintain your admin login for demo
-        if (credentials.email === "admin@earthquake.gov.in" && credentials.password === "admin1234") {
+        const adminEmail = process.env.ADMIN_EMAIL || "admin@earthquake.gov.in";
+        const adminPassword = process.env.ADMIN_PASSWORD || "admin1234";
+
+        if (credentials.email === adminEmail && credentials.password === adminPassword) {
           return {
             id: "admin-001",
             name: "Admin User",
-            email: "admin@earthquake.gov.in",
+            email: adminEmail as string,
             role: "ADMIN",
           };
         }
