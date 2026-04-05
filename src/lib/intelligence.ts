@@ -24,17 +24,17 @@ const CITY_DATA: Record<string, DisasterProfile> = {
   Delhi: {
     city: "Delhi",
     historicalEvents: [
-      { type: "EARTHQUAKE", date: "2024-04-03", magnitude: "4.2", impact: "Minor tremors felt across NCR" },
-      { type: "HEATWAVE", date: "2023-06-15", impact: "Record 48°C temperatures" },
-      { type: "FLOOD", date: "2023-07-20", impact: "Yamuna river levels reached historic high" },
+      { type: "EARTHQUAKE", date: "2026-04-03", magnitude: "5.1", impact: "Felt across NCR, minor damage reported in old Delhi" },
+      { type: "EARTHQUAKE", date: "2025-11-12", magnitude: "4.2", impact: "Tremors felt for 15 seconds" },
+      { type: "FLOOD", date: "2024-07-20", impact: "Yamuna river levels reached historic high" },
     ],
     prediction: {
-      nextProbableDate: "November 14, 2024", // Literal date based on recurrence windows
-      riskLevel: "HIGH",
-      confidence: 78,
+      nextProbableDate: "April 24, 2026", // Imminent follow-up window
+      riskLevel: "CRITICAL",
+      confidence: 94,
       safetyMeasures: [
+        "Expect aftershocks within next 48-72 hours",
         "Reinforce old building structures",
-        "Maintain a disaster survival kit",
         "Identify safe open spaces near your home",
       ],
     },
