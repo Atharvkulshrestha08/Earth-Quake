@@ -6,7 +6,7 @@ const footerLinks = {
     { name: "Live Alerts", href: "/alerts" },
     { name: "Survival Guides", href: "/guides" },
     { name: "Mobile App", href: "/app" },
-    { name: "For Government", href: "/admin" },
+    { name: "For Government", href: "/government" },
   ],
   resources: [
     { name: "Documentation", href: "/docs" },

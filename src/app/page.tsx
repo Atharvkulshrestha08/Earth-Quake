@@ -408,7 +408,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-800 w-full sm:w-auto" asChild>
-              <Link href="/admin">
+              <Link href="/government">
                 <Shield className="mr-2 w-5 h-5" />
                 For Government Officials
               </Link>

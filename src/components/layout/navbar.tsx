@@ -22,7 +22,7 @@ const navigation = [
   { name: "Home", href: "/", icon: Home },
   { name: "Live Alerts", href: "/alerts", icon: Bell },
   { name: "Survival Guides", href: "/guides", icon: BookOpen },
-  { name: "For Government", href: "/admin", icon: Shield },
+  { name: "For Government", href: "/government", icon: Shield },
 ];
 
 export function Navbar() {
