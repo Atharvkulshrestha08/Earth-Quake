@@ -42,7 +42,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
+        (isScrolled || isOpen)
           ? "bg-neutral-900/95 backdrop-blur-md border-b border-neutral-800"
           : "bg-transparent"
       )}
@@ -104,7 +104,7 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-neutral-800">
+          <div className="md:hidden py-4 border-t border-neutral-800 bg-neutral-900/95 backdrop-blur-md">
             <div className="flex flex-col gap-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -206,7 +206,7 @@ export function AdminNavbar() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-neutral-800">
+          <div className="md:hidden py-4 border-t border-neutral-800 bg-neutral-900">
             {adminNav.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
