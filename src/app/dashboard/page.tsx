@@ -14,13 +14,12 @@ import {
   ChevronRight,
   Clock,
   Bookmark,
-  Share2,
-  CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SeverityMeter } from "@/components/ui/misc";
+import { IndiaMap } from "@/components/dashboard/IndiaMap";
 
 export const metadata = {
   title: "My Dashboard",
@@ -67,7 +66,7 @@ const emergencyContacts = [
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-neutral-900">
+    <div className="min-h-screen bg-neutral-900 pb-12">
       {/* Header */}
       <header className="bg-neutral-800 border-b border-neutral-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,37 +101,31 @@ export default function DashboardPage() {
         {/* Welcome */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-white">Welcome back</h1>
-          <p className="text-neutral-400">Stay safe with real-time disaster alerts</p>
+          <p className="text-neutral-400 text-sm">Stay safe with real-time disaster alerts</p>
         </div>
 
-        {/* Alert Banner */}
-        <Card className="mb-8 bg-alert-high/10 border-alert-high/30">
-          <CardContent className="p-4 flex items-center gap-4">
-            <div className="w-12 h-12 bg-alert-high/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <AlertTriangle className="w-6 h-6 text-alert-high" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-white">Active Alert in Your Area</h3>
-              <p className="text-sm text-neutral-400">
-                Heavy rainfall warning for Mumbai region. Tap for details.
-              </p>
-            </div>
-            <Button size="sm" asChild>
-              <Link href="/alerts/1">View</Link>
-            </Button>
-          </CardContent>
-        </Card>
+        {/* Live Alert Visualization */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold font-heading text-white flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-primary-400" />
+              Live Dashboard Map
+            </h2>
+            <Badge variant="outline" className="text-xs text-neutral-500 border-neutral-700">Real-time Visualization</Badge>
+          </div>
+          <IndiaMap />
+        </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {quickActions.map((action) => {
             const Icon = action.icon;
             return (
               <Link key={action.label} href={action.href}>
-                <Card className="hover:border-primary-500/50 transition-colors cursor-pointer">
+                <Card className="hover:border-primary-500/50 transition-colors cursor-pointer bg-neutral-800/40 border-neutral-700/50">
                   <CardContent className="p-4 flex flex-col items-center text-center">
                     <Icon className={`w-8 h-8 mb-2 ${action.color}`} />
-                    <span className="text-sm text-white">{action.label}</span>
+                    <span className="text-sm text-white font-medium">{action.label}</span>
                   </CardContent>
                 </Card>
               </Link>
@@ -143,9 +136,9 @@ export default function DashboardPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Recent Alerts */}
           <div className="lg:col-span-2">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle>Recent Alerts</CardTitle>
+            <Card className="border-neutral-700 bg-neutral-800/40">
+              <CardHeader className="flex flex-row items-center justify-between border-b border-neutral-700/50 pb-4">
+                <CardTitle className="text-lg">Recent Alerts</CardTitle>
                 <Button variant="ghost" size="sm" asChild>
                   <Link href="/alerts">
                     View All
@@ -153,12 +146,12 @@ export default function DashboardPage() {
                   </Link>
                 </Button>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 pt-6">
                 {recentAlerts.map((alert) => (
                   <div
                     key={alert.id}
                     className={`flex items-start gap-4 p-4 rounded-lg transition-colors ${
-                      !alert.isRead ? "bg-primary-500/10 border border-primary-500/30" : "bg-neutral-700/50"
+                      !alert.isRead ? "bg-primary-500/10 border border-primary-500/30" : "bg-neutral-800/60 border border-neutral-700/50"
                     }`}
                   >
                     <div className="w-10 h-10 bg-alert-high/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -170,7 +163,7 @@ export default function DashboardPage() {
                           {alert.title}
                         </h4>
                         {!alert.isRead && (
-                          <Badge variant="primary" className="text-xs">New</Badge>
+                          <Badge className="bg-primary-500 hover:bg-primary-600 text-[10px] h-4 px-1.5">New</Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-4 text-sm text-neutral-400 mb-2">
@@ -194,7 +187,7 @@ export default function DashboardPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Emergency Contacts */}
-            <Card>
+            <Card className="border-neutral-700 bg-neutral-800/40">
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Phone className="w-4 h-4 text-alert-high" />
@@ -203,17 +196,17 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {emergencyContacts.map((contact, i) => (
-                  <div key={i} className="flex items-center justify-between">
+                  <div key={i} className="flex items-center justify-between p-2 rounded hover:bg-neutral-700/30">
                     <div>
-                      <div className="text-sm text-white">{contact.name}</div>
+                      <div className="text-sm text-white font-medium">{contact.name}</div>
                       <div className="text-xs text-neutral-500">{contact.phone}</div>
                     </div>
-                    <Button size="sm" variant="outline" asChild>
+                    <Button size="sm" variant="outline" className="h-8 border-neutral-700" asChild>
                       <a href={`tel:${contact.phone}`}>Call</a>
                     </Button>
                   </div>
                 ))}
-                <Button variant="outline" className="w-full mt-2" asChild>
+                <Button variant="outline" className="w-full mt-2 border-neutral-700" asChild>
                   <Link href="/dashboard/contacts">
                     <Users className="w-4 h-4 mr-2" />
                     Manage Contacts
@@ -223,7 +216,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Saved Guides */}
-            <Card>
+            <Card className="border-neutral-700 bg-neutral-800/40">
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Bookmark className="w-4 h-4 text-alert-medium" />
@@ -235,16 +228,16 @@ export default function DashboardPage() {
                   <Link
                     key={guide.id}
                     href={`/guides/${guide.id}`}
-                    className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-700 transition-colors"
+                    className="flex items-center justify-between p-2 rounded-lg hover:bg-neutral-700/50 transition-colors"
                   >
                     <div>
-                      <div className="text-sm text-white">{guide.title}</div>
+                      <div className="text-sm text-white font-medium">{guide.title}</div>
                       <div className="text-xs text-neutral-500">{guide.readTime} read</div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-neutral-500" />
                   </Link>
                 ))}
-                <Button variant="outline" className="w-full" asChild>
+                <Button variant="outline" className="w-full border-neutral-700" asChild>
                   <Link href="/guides">
                     Browse All Guides
                   </Link>
@@ -259,10 +252,10 @@ export default function DashboardPage() {
                   <AlertTriangle className="w-8 h-8 text-alert-critical" />
                 </div>
                 <h3 className="font-bold text-white mb-2">SOS Emergency</h3>
-                <p className="text-sm text-neutral-400 mb-4">
+                <p className="text-xs text-neutral-400 mb-4">
                   Send your location to emergency services and contacts
                 </p>
-                <Button variant="destructive" size="lg" className="w-full">
+                <Button variant="destructive" size="lg" className="w-full shadow-lg shadow-alert-critical/20">
                   <Shield className="w-4 h-4 mr-2" />
                   Send SOS Alert
                 </Button>
