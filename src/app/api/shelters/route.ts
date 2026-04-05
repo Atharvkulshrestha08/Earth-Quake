@@ -48,11 +48,13 @@ export async function GET(request: NextRequest) {
       },
     ];
 
+    const sanitizedShelters = sanitizeObject(shelters);
+
     return NextResponse.json({
       success: true,
-      data: shelters,
+      data: sanitizedShelters,
       meta: {
-        total: shelters.length,
+        total: sanitizedShelters.length,
         nearestLat: lat,
         nearestLng: lng,
         radius: radius,
