@@ -35,15 +35,15 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const { signIn } = await import("next-auth/react");
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
       });
 
-      if (!res.ok) {
-        const body = await res.json();
-        throw new Error(body.error || "Login failed");
+      if (res?.error) {
+        throw new Error("Invalid email or password");
       }
 
       window.location.href = "/dashboard";
