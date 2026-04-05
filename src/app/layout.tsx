@@ -63,6 +63,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { DisasterProvider } from "@/providers/DisasterProvider";
+
 export default function RootLayout({
   children,
 }: {
@@ -79,9 +81,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <DisasterProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </DisasterProvider>
       </body>
     </html>
   );
